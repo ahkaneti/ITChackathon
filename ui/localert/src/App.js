@@ -1,8 +1,15 @@
 import React from 'react';
+
+//imports for the map
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+
+//Imports from bootstrap 
 import { Form } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap/FormControl';
+import { Button } from 'react-bootstrap/Button';
+
+//Imports for style
 import './App.css';
 
 
