@@ -1,10 +1,10 @@
-"""
-DROP TABLE IF EXISTS `teams_informations`;
-DROP TABLE IF EXISTS `trophies`;
-DROP TABLE IF EXISTS `matches`;
-DROP TABLE IF EXISTS `top_players`;
-DROP TABLE IF EXISTS `players_from_api`;
-"""
+DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS `Reports`;
+DROP TABLE IF EXISTS `Report_Kinds`;
+DROP TABLE IF EXISTS `User_Groups`;
+DROP TABLE IF EXISTS `Positions`;
+DROP TABLE IF EXISTS `Alerts`;
+
 
 CREATE TABLE `Users`
 {
@@ -18,10 +18,12 @@ CREATE TABLE `Users`
 CREATE TABLE `Reports` {
   report_id int PRIMARY KEY,
   report_kind int,
+  position_id int
   user_id int,
   report_date TIMESTAMP
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
   FOREIGN KEY (report_kind) REFERENCES Report_Kinds(report_kind)
+  FOREIGN KEY (position_id) REFERENCES Positions(position_id)
 };
 
 CREATE TABLE `Report_Kinds` {
@@ -30,15 +32,25 @@ CREATE TABLE `Report_Kinds` {
   radius_dist int
 };
 
-CREATE TABLE `Groups` {
+CREATE TABLE `User_Groups` {
   group_number int,
   user_id int
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
 };
 
 CREATE TABLE `Positions` {
-  report_id int PRIMARY KEY,
+  position_id int PRIMARY KEY,
   longitude int,
   latitude int
-  FOREIGN KEY (report_id) REFERENCES Reports(report_id)
+  FOREIGN KEY (position_id) REFERENCES Reports(position_id)
 };
+
+CREATE TABLE `Alerts` {
+  alert_id int PRIMARY KEY,
+  user_id int,
+  group_number int
+  position_id int
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+  FOREIGN KEY (group_number) REFERENCES User_Groups(group_number)
+  FOREIGN KEY (position_id) REFERENCES Positions(position_id)
+}
