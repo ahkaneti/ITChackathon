@@ -14,10 +14,14 @@
   width: 85%; 
   float: right;
 }
-.nav-control
+.navbar
 {
   width:80%;
   margin-left: 10%;
+}
+.nav-control
+{
+  font-size: 1px;
 }
 .bar
 {
