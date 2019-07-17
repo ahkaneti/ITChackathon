@@ -8,6 +8,7 @@ def homepage():
     print('hellllloooo nurse')
     return 'hellllloooo nurse'
 
+
 ## Creation
 
 # Create User
@@ -42,6 +43,7 @@ def create_user_group():
             print(user_group_members)
             # TODO: Connect to the DB
     return ('hello create_user_group - {}, members: {}'.format(user_group_name, user_group_members))
+
 
 ## Updates and reports from users
 
@@ -80,6 +82,7 @@ def create_user_report():
             # TODO: Connect to the DB
     return ('hello create_user_report - {}, {}, {}'.format(user_id, str(location), report))
 
+
 # Alert sent by user
 @post('/alert_sent_by_user')
 def alert_sent_by_user():
@@ -113,15 +116,33 @@ def update_user_location():
             # TODO: Connect to the DB
     return ('hello update_user_location - {}, {}'.format(user_id, str(location)))
 
-## Updates and reports to users
-
-
-
 
 #####
 # Backend
+## Updates and reports to users
 
+# Todo: implement get routes and methods
+# Get / Selects
+# Get user location
+# Get group alerts
+# Get nearby reports
+
+# Set / Update / Insert / Delete
+# Update user location
+
+
+#####
+# DB
+
+# Todo: implement database connectivity - select, insert, update, delete
+# Create User (insert)
+# Create Group (insert)
+#
+# Report Issue by User (insert)
+# Alert sent by user (insert)
+# Update user location
 
 ######
-#
+# Server run
+
 run(host='localhost', port=4261, reloader=True, debug=True)
