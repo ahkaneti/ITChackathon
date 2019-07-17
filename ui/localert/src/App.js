@@ -1,14 +1,17 @@
 import React from 'react';
 import { compose, withProps } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import logo from './logo.svg';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { Form } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap/FormControl';
 import './App.css';
+
+
 
 const MyMapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `900px` }} />,
+    containerElement: <div style={{ height: `100%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
@@ -24,7 +27,30 @@ const MyMapComponent = compose(
 
 function App() {
   return (
-  < div> <MyMapComponent isMarkerShown /></div>
+    <div className='screen'>
+      < link
+        rel = "stylesheet"
+        href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin = "anonymous"
+      />  
+      <div className= 'bar'>
+      <Form className='nav-control'>
+        <Form.Group>
+          <Form.Label>Source</Form.Label>
+          <Form.Control type="email" placeholder="Enter source address"/>
+          <Form.Label>Destination</Form.Label>
+          <Form.Control type="email" placeholder="Enter destination address" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+      </Form>
+      </div>
+      <div  className="map-container"> 
+        <MyMapComponent isMarkerShown />
+      </div>
+    </div>
   );
 }
 
