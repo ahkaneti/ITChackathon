@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS `Alerts`;
 CREATE TABLE `Report_Kinds` (
   `report_kind` int PRIMARY KEY,
   `report_name` varchar(20),
+  `report_description` varchar(100),
   `radius_dist` int
 );
 
