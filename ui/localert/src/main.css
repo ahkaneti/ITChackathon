@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+.screen
+{
+  height: 100vh;
+  display: flex;
+  color: white;
+}
+.map-container
+{
+  height: 100%;
+  overflow: 'hidden';
+  width: 85%; 
+  float: right;
+}
+.navbar
+{
+  width:80%;
+  margin-left: 10%;
+  margin-top: 35%;
+}
+.nav-control
+{
+  font-size: 1px;
+}
+.bar
+{
+  background-color: #003333;
+  width: 15%;
+  height: 100%;
+}
+.screen
+{
+  width:100%;
+}
+.search
+{
+  margin-left: 15px;
+}
