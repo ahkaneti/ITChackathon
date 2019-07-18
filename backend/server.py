@@ -1,8 +1,6 @@
 from bottle import request, run, route, post, get
-<<<<<<< HEAD
-=======
+
 import pymysql
->>>>>>> f32084c9edb0a9a18623956db7a75281a5f2be50
 
 # Frontend
 
@@ -131,7 +129,7 @@ def alert_sent_by_user():
 @get('/get_user_location/<userid>')
 def get_user_location(userid):
     print('in get_user_location - userid: {}'.format(userid))
-    get_user_location_from_database(userid)
+    location = get_user_location_from_database(userid)
     return ('in get_user_location - userid: {}'.format(userid))
 
 
@@ -146,14 +144,13 @@ def get_user_location(groupid):
     update = get_group_updates_from_database(groupid)
     return ('in get_group_location - groupid: {}, update: {}'.format(groupid, update))
 
-
 # Get nearby reports
 
-@get('/get_nearby_reports<positionId>')
+@get('/get_nearby_reports/<positionId>')
 def get_nearby_reports(positionId):
     print("in get_nearby_reports positionId: {}".format(positionId))
-    get_nearby_reports_from_database(positionId)
-    return print("in get_nearby_reports positionId: {}".format(positionId))
+    reports = get_nearby_reports_from_database(positionId)
+    return ("in get_nearby_reports positionId -positionId: {}, reports: {}".format(positionId,reports))
 
 
 # Set / Update / Insert / Delete
@@ -175,10 +172,11 @@ def get_user_location_from_database(userid):
     # TODO: DB connection code
     location = {'234', '6476'}
     return location
+
 def get_nearby_reports_from_database(positionId):
     print("in get_nearby_reports_from_database positionId: {}".format(positionId))
     # TODO: DB connection code
-    reports_data  = "reports"
+    reports_data  ="reports"
     return reports_data
 
 """ 
