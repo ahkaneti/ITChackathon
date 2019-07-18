@@ -1,8 +1,9 @@
 import React from 'react';
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import { Button, ButtonGroup, Modal, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import ModalV from './FriendAlert'
+
 
 
 const MapWithAMarker = compose(
@@ -19,9 +20,9 @@ const MapWithAMarker = compose(
     defaultZoom={13}
     center={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }} onClick={props.onMarkerClick} />}
-    {/* <Marker position={{ lat: 32.08635, lng: 34.77479 }} onClick={props.onMarkerClick} style={{ display: 'none' }} /> */}
-    {/* <Marker position={{ lat: 32.08913, lng: 34.77647 }} onClick={props.onMarkerClick} /> */}
+    {props.isMarkerShown && <Marker label="Rotem" position={{ lat: props.currentLocation.lat, lng: props.currentLocation.lng }} onClick={props.onMarkerClick} />}
+    <Marker label="Event" info="There is a creepy guy here!"  position={{ lat: 32.08635, lng: 34.77479 }} onClick={props.onMarkerClick} style={{ display: 'none' }} />
+    <Marker label="Destination" position={{ lat: 32.08913, lng: 34.77647 }} onClick={props.onMarkerClick} />
     <ButtonGroup style={{ position: 'absolute', bottom: '5%', right: '35%' }}>
       <ButtonToolbar>
         

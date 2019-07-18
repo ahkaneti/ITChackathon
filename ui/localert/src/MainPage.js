@@ -1,19 +1,14 @@
 import React from 'react';
 // import ReactDOM from 'react-dom'
 //imports for the map
-import { compose, withProps } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 //Imports from bootstrap 
-import { Form, Button, ButtonGroup, Modal } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import MapWithAMarker from './MapWithAMarker';
 import FriendAdd from './FriendAdd';
 
 
 //Imports for style
 import './main.css';
-
-let lat = 37.7749;
-let lng = -122.4194;
 
 
 class MainPage extends React.Component {

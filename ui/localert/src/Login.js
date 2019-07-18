@@ -1,7 +1,6 @@
 import React from 'react';
 import './login.css'
 import {Accordion, Card, Button, Form} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 
 class Login extends React.Component{
@@ -12,10 +11,6 @@ class Login extends React.Component{
       username: '',
       password: '',
     }
-  }
-  login()
-  {
-    window.location.href='/map';
   }
   render(){
     return (
@@ -45,7 +40,7 @@ class Login extends React.Component{
                       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot Password?</a>
                     </Form.Text>
                   </Form.Group>
-                  <Button><a className = "linkMap"href="localhost:3000/map" >Login!</a></Button>
+                  <Button><a className = "linkMap"href="http://localhost:3000/map" >Login!</a></Button>
                   </Card.Body>
               </Accordion.Collapse>
             </Card>
