@@ -46,13 +46,20 @@ def filling_report(filename):
         conn.commit()
 
 
+def filling_users(filename):
+    if os.path.isfile(filename):
+        with open(filename, encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                values = [row["user_id"], row["user_name"], row["email"], row["address"], row['phone_numbers']]
+                cur.execute(
+                    "INSERT INTO Users(user_id, user_name, email, address, phone_numbers) VALUES (%s, %s, %s, %s, %s)",
+                    values)
+        conn.commit()
 
-#request_list = get_sql_from_file("LocAlert.sql")
-#conn = pymysql.connect(host='127.0.0.1', user='root', passwd='nacabiedargent')
 
-filename = 'report_kinds.csv'
-
-filling_report(filename)
+filling_report('report_kinds.csv')
+filling_users('users.csv')
 
 cur.close()
 
