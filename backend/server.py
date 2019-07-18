@@ -1,4 +1,8 @@
 from bottle import request, run, route, post, get
+<<<<<<< HEAD
+=======
+import pymysql
+>>>>>>> f32084c9edb0a9a18623956db7a75281a5f2be50
 
 # Frontend
 
@@ -98,6 +102,7 @@ def alert_sent_by_user():
             # TODO: Connect to the DB
     return ('hello alert_sent_by_user - {}, {}'.format(user_id, str(location)))
 
+
 #
 # # Update user location
 # @post('/update_user_location')
@@ -127,8 +132,21 @@ def alert_sent_by_user():
 def get_user_location(userid):
     print('in get_user_location - userid: {}'.format(userid))
     get_user_location_from_database(userid)
-    return('in get_user_location - userid: {}'.format(userid))
+    return ('in get_user_location - userid: {}'.format(userid))
+
+
 # Get group alerts
+""" 
+    This endpoint is polled by the client.
+    If there is an alert by a group member the mothod returns: userid, location
+"""
+@get('/get_group_location/<groupid>')
+def get_user_location(groupid):
+    print('in get_group_location - groupid: {}'.format(groupid))
+    update = get_group_updates_from_database(groupid)
+    return ('in get_group_location - groupid: {}, update: {}'.format(groupid, update))
+
+
 # Get nearby reports
 
 @get('/get_nearby_reports<positionId>')
@@ -143,16 +161,45 @@ def get_nearby_reports(positionId):
 
 #####
 # DB
+
+# Auxiliary methods
+# Get User from database
+# Get Group from database
+# Get Group Members from database
+# 
+
+
+# Methods
 def get_user_location_from_database(userid):
     print('in get_user_location_from_database(userid): {}'.format(userid))
     # TODO: DB connection code
-    location = {'234','6476'}
+    location = {'234', '6476'}
     return location
 def get_nearby_reports_from_database(positionId):
     print("in get_nearby_reports_from_database positionId: {}".format(positionId))
     # TODO: DB connection code
     reports_data  = "reports"
     return reports_data
+
+""" 
+    This DB method is used by the get_group_location method.
+    It receives a groupid.
+    If there is an alert by a group member the mothod returns: userid, location
+    In order to check if there is an alert it needs to join the tables: user_groups, alerts, on userid 
+    where the groupid is equal to the received groupid. 
+"""
+def get_group_updates_from_database(groupid):
+    print('in get_group_updates_from_database(groupid): {}'.format(groupid))
+    # TODO: DB connection code
+    # TODO: Create get group members method, use that to join on the alerts table
+    # conn = pymysql.connect(host='127.0.0.1', user='root', password='zaq1zaq')
+    # cur = conn.cursor()
+    # join
+    # cur.execute('SELECT * FROM user_groups LEFT JOIN alerts ON ')
+    # temporary mock return value:
+    group_updates = [{'update_id': 'some id', 'update_content': 'some updates'}]
+    return group_updates
+# add pymysql, get_group_updates endpoint and methods
 
 # Todo: implement database connectivity - select, insert, update, delete
 # Create User (insert)
@@ -161,6 +208,23 @@ def get_nearby_reports_from_database(positionId):
 # Report Issue by User (insert)
 # Alert sent by user (insert)
 # Update user location
+
+
+
+###########
+# Logic
+
+# TODO:
+# Monitor user movement in relation to the designated route
+# Notify group members on route completion
+# Alert the police
+#
+
+
+
+
+
+
 
 ######
 # Server run
