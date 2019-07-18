@@ -13,8 +13,8 @@ def get_sql_from_file(filename):
         ret.pop()
         return ret
 
-request_list = get_sql_from_file("sql/LocAlert.sql")
-conn = pymysql.connect(host='127.0.0.1', user='root', passwd='root')
+request_list = get_sql_from_file("LocAlert.sql")
+conn = pymysql.connect(host='127.0.0.1', user='root', passwd='nacabiedargent')
 cur = conn.cursor()
 
 try:
@@ -29,3 +29,4 @@ finally:
 for request in request_list:
     cur.execute(request)
 cur.close()
+
