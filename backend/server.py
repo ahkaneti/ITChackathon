@@ -158,15 +158,37 @@ def get_nearby_reports(positionId):
 
 #####
 # DB
+# Connection setup
+# Setting connection parameters
+host='127.0.0.1'
+user='root'
+password='zaq1zaq'
 
-# Auxiliary methods
-# Get User from database
-# Get Group from database
-# Get Group Members from database
-# 
-
+# Creating a general connection
+conn = None
 
 # Methods
+
+# Create global connection
+# Updates the global conn variable
+# Returns a cursor ?
+def create_global_db_connection():
+    global conn
+    try:
+        conn = pymysql.connect(host=host, user=user, password=password)
+        if(conn):
+            print('DB connection successful')
+    except:
+        print('DB CONNECTION FAIL')
+#
+def check_db_connection():
+    try:
+        if(conn):
+            print('DB is connected')
+    except:
+        print('DB is not connected')
+
+
 def get_user_location_from_database(userid):
     print('in get_user_location_from_database(userid): {}'.format(userid))
     # TODO: DB connection code
@@ -197,8 +219,15 @@ def get_group_updates_from_database(groupid):
     # temporary mock return value:
     group_updates = [{'update_id': 'some id', 'update_content': 'some updates'}]
     return group_updates
-# add pymysql, get_group_updates endpoint and methods
+# add , get_group_updates endpoint and methods
 
+# Auxiliary methods
+# Get User from database
+def get_user_from_database(user):
+    pass
+# Get Group from database
+# Get Group Members from database
+#
 # Todo: implement database connectivity - select, insert, update, delete
 # Create User (insert)
 # Create Group (insert)
@@ -226,5 +255,10 @@ def get_group_updates_from_database(groupid):
 
 ######
 # Server run
-
-run(host='localhost', port=4261, reloader=True, debug=True)
+if __name__ == '__main__':
+    print('when running the server with reloader=True the server will be started twice: http://bottlepy.org/docs/dev/tutorial.html#auto-reloading')
+    print('therefore these startap messages will show twice')
+    print('server starting in main')
+    create_global_db_connection()
+    check_db_connection()
+    run(host='localhost', port=4261, reloader=True, debug=True)

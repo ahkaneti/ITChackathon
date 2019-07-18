@@ -1,0 +1,6 @@
+report_kind,report_name,report_description,radius_dist
+1,Lighting,The street is too dark,10
+2,People,There were uncomfortable people,10
+3,Crowded,The street was crowded,10
+4,Cleanliness,The street was clean,10
+5,Blocked area,There were something blocking the street,10
