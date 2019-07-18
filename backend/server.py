@@ -1,5 +1,8 @@
 from bottle import request, run, route, post, get
+<<<<<<< HEAD
+=======
 import pymysql
+>>>>>>> f32084c9edb0a9a18623956db7a75281a5f2be50
 
 # Frontend
 
@@ -146,6 +149,13 @@ def get_user_location(groupid):
 
 # Get nearby reports
 
+@get('/get_nearby_reports<positionId>')
+def get_nearby_reports(positionId):
+    print("in get_nearby_reports positionId: {}".format(positionId))
+    get_nearby_reports_from_database(positionId)
+    return print("in get_nearby_reports positionId: {}".format(positionId))
+
+
 # Set / Update / Insert / Delete
 
 
@@ -187,6 +197,11 @@ def get_user_location_from_database(userid):
     # TODO: DB connection code
     location = {'234', '6476'}
     return location
+def get_nearby_reports_from_database(positionId):
+    print("in get_nearby_reports_from_database positionId: {}".format(positionId))
+    # TODO: DB connection code
+    reports_data  = "reports"
+    return reports_data
 
 """ 
     This DB method is used by the get_group_location method.
