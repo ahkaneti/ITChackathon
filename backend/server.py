@@ -1,4 +1,4 @@
-from bottle import request, run, route, post
+from bottle import request, run, route, post, get
 
 
 # Frontend
@@ -24,7 +24,7 @@ def create_user():
         if user_first_name is not None:
             print(user_first_name)
             print(user_last_name)
-            # TODO: Connect to the DB
+            # TODO: Connect to the DB - return userid
     return ('hello create_user - {} {}'.format(user_first_name, user_last_name))
 
 
@@ -41,7 +41,7 @@ def create_user_group():
         if user_group_name is not None:
             print(user_group_name)
             print(user_group_members)
-            # TODO: Connect to the DB
+            # TODO: Connect to the DB - return group id
     return ('hello create_user_group - {}, members: {}'.format(user_group_name, user_group_members))
 
 
@@ -99,22 +99,22 @@ def alert_sent_by_user():
             # TODO: Connect to the DB
     return ('hello alert_sent_by_user - {}, {}'.format(user_id, str(location)))
 
-
-# Update user location
-@post('/update_user_location')
-def update_user_location():
-    print('hello update_user_location')
-    try:
-        user_id = request.forms.get('user_id')
-        location = request.forms.get('location')
-    except:
-        print('got no data')
-    else:
-        if user_id is not None:
-            print(user_id)
-            print(location)
-            # TODO: Connect to the DB
-    return ('hello update_user_location - {}, {}'.format(user_id, str(location)))
+#
+# # Update user location
+# @post('/update_user_location')
+# def update_user_location():
+#     print('hello update_user_location')
+#     try:
+#         user_id = request.forms.get('user_id')
+#         location = request.forms.get('location')
+#     except:
+#         print('got no data')
+#     else:
+#         if user_id is not None:
+#             print(user_id)
+#             print(location)
+#             # TODO: Connect to the DB
+#     return ('hello update_user_location - {}, {}'.format(user_id, str(location)))
 
 
 #####
@@ -124,15 +124,24 @@ def update_user_location():
 # Todo: implement get routes and methods
 # Get / Selects
 # Get user location
+@get('/get_user_location/<userid>')
+def get_user_location(userid):
+    print('in get_user_location - userid: {}'.format(userid))
+    get_user_location_from_database(userid)
+    return('in get_user_location - userid: {}'.format(userid))
 # Get group alerts
 # Get nearby reports
 
 # Set / Update / Insert / Delete
-# Update user location
 
 
 #####
 # DB
+def get_user_location_from_database(userid):
+    print('in get_user_location_from_database(userid): {}'.format(userid))
+    # TODO: DB connection code
+    location = {'234','6476'}
+    return location
 
 # Todo: implement database connectivity - select, insert, update, delete
 # Create User (insert)
