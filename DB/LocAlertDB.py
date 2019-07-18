@@ -16,7 +16,7 @@ def get_sql_from_file(filename):
         return ret
 
 request_list = get_sql_from_file("LocAlert.sql")
-conn = pymysql.connect(host='127.0.0.1', user='root', passwd='nacabiedargent')
+conn = pymysql.connect(host='127.0.0.1', user='root', passwd='i326849775')
 cur = conn.cursor()
 
 try:

@@ -162,7 +162,7 @@ def get_nearby_reports(positionId):
 # Setting connection parameters
 host='127.0.0.1'
 user='root'
-password='zaq1zaq'
+password='i326849775'
 
 # Creating a general connection
 conn = None
