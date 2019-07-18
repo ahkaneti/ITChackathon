@@ -5,7 +5,8 @@ import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 //Imports from bootstrap 
 import { Form } from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { ButtonGroup } from 'react-bootstrap';
 
 //Imports for style
 import './App.css';
@@ -26,10 +27,14 @@ const MyMapComponent = compose(
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
+    defaultZoom={18}
+    defaultCenter={{ lat: lat, lng: lng }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: lat, lng: lng}} />}
+    {/* {props.isMarkerShown && <Marker position={{ lat: lat, lng: lng}} />} */}
+    <ButtonGroup style={{position: 'absolute', bottom:70, left: 900,}}>
+      <Button style={{backgroundColor: 'red'}}>Alert</Button>
+      <Button syle ={{backgroundColor: 'black'}}>Report</Button>
+    </ButtonGroup>
   </GoogleMap>
 )
 
@@ -39,8 +44,7 @@ class App extends React.Component{
 
     this.state = {
       // Sets that initial state
-      lat : 37.7749, 
-      lng: -122.4194,
+      height: 0,
     };
   }
   render(){
