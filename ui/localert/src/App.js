@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 //imports for the map
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
@@ -9,6 +9,9 @@ import {Button} from 'react-bootstrap';
 
 //Imports for style
 import './App.css';
+
+let lat = 37.7749; 
+let lng = -122.4194;
 
 
 
@@ -26,7 +29,7 @@ const MyMapComponent = compose(
     defaultZoom={8}
     defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: 37.7749, lng: -122.4194}} />}
+    {props.isMarkerShown && <Marker position={{ lat: lat, lng: lng}} />}
   </GoogleMap>
 )
 
