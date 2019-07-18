@@ -150,7 +150,7 @@ def get_user_location(groupid):
 def get_nearby_reports(positionId):
     print("in get_nearby_reports positionId: {}".format(positionId))
     reports = get_nearby_reports_from_database(positionId)
-    return ("in get_nearby_reports positionId -positionId: {}, reports: {}".format(positionId,reports))
+    return reports
 
 
 # Set / Update / Insert / Delete
@@ -197,9 +197,17 @@ def get_user_location_from_database(userid):
 
 def get_nearby_reports_from_database(positionId):
     print("in get_nearby_reports_from_database positionId: {}".format(positionId))
-    # TODO: DB connection code
-    reports_data  ="reports"
-    return reports_data
+    try:
+        with conn.cursor() as curr:
+            sql_query = 'SELECT report_date FROM localert.reports WHERE position_id={}'.format(positionId)
+            print('sql_query: {}'.format(sql_query))
+            curr.execute(sql_query)
+            report_data = curr.fetchall()
+            print('position_data: {}'.format(report_data))
+        conn.commit()
+        return report_data
+    except:
+        print('error getting the user from the database')
 
 """ 
     This DB method is used by the get_group_location method.

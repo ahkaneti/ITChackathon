@@ -33,8 +33,6 @@ for request in request_list:
 #cur.close()
 
 def filling_report(filename):
-
-
     if os.path.isfile(filename):
         with open(filename, encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
