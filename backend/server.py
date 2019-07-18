@@ -1,5 +1,5 @@
 from bottle import request, run, route, post, get
-
+import datetime
 import pymysql
 
 # Frontend
@@ -130,7 +130,7 @@ def alert_sent_by_user():
 def get_user_location(userid):
     print('in get_user_location - userid: {}'.format(userid))
     location = get_user_location_from_database(userid)
-    return ('in get_user_location - userid: {}'.format(userid))
+    return ('in get_user_location - userid: {}, location: {}'.format(userid,location))
 
 
 # Get group alerts
@@ -188,7 +188,7 @@ def check_db_connection():
     except:
         print('DB is not connected')
 
-
+#
 def get_user_location_from_database(userid):
     print('in get_user_location_from_database(userid): {}'.format(userid))
     # TODO: DB connection code
@@ -223,13 +223,47 @@ def get_group_updates_from_database(groupid):
 
 # Auxiliary methods
 # Get User from database
-def get_user_from_database(user):
-    pass
+def get_user_from_database(userid):
+    print('in get_user_from_database, userid: {}'.format(userid))
+    try:
+        with conn.cursor() as curr:
+            sql_query = 'SELECT * FROM localert.users WHERE user_id={}'.format(userid)
+            # sql_query = 'select * from localert.users;'
+            print('sql_query: {}'.format(sql_query))
+            curr.execute(sql_query)
+            print('post curr exed')
+            user = curr.fetchall()
+            print('user: {}'.format(str(user)))
+        conn.commit()
+    except:
+        print('error getting the user from the database')
+    finally:
+        print('in get_user_from_database - finally')
+#
+#     pass
 # Get Group from database
 # Get Group Members from database
 #
 # Todo: implement database connectivity - select, insert, update, delete
 # Create User (insert)
+def create_user(user_details):
+    print(user_details)
+    with conn.cursor() as curr:
+        sql_query = 'INSERT INTO users (user_name,email,address,phone_numbers) VALUES({},{},{},{})'\
+            .format(user_details.user_name,user_details.user_email,user_details.user_address,user_details.user_phone_numbers)
+        curr.execute(sql_query)
+        print('executed query: ' + sql_query)
+
+        get_id_statement = 'LAST_INSERT_ID()'
+        userid = curr.execute(get_id_statement)
+        print(userid)
+
+
+    #         user = curr.fetchone()
+    #         print('user: {}'.format(user))
+    # Get inserted id
+    # with conn.curser() as curr:
+        # userid = LAST_INSERT_ID()
 # Create Group (insert)
 #
 # Report Issue by User (insert)
@@ -258,7 +292,10 @@ def get_user_from_database(user):
 if __name__ == '__main__':
     print('when running the server with reloader=True the server will be started twice: http://bottlepy.org/docs/dev/tutorial.html#auto-reloading')
     print('therefore these startap messages will show twice')
-    print('server starting in main')
+    print('server starting in main on {}'.format(datetime.datetime.now()))
     create_global_db_connection()
     check_db_connection()
+    # test stuff
+    get_user_from_database(2)
+    # create_user('fasdf')
     run(host='localhost', port=4261, reloader=True, debug=True)
