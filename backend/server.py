@@ -1,6 +1,5 @@
 from bottle import request, run, route, post, get
 
-
 # Frontend
 
 @route('/')
@@ -132,6 +131,13 @@ def get_user_location(userid):
 # Get group alerts
 # Get nearby reports
 
+@get('/get_nearby_reports<positionId>')
+def get_nearby_reports(positionId):
+    print("in get_nearby_reports positionId: {}".format(positionId))
+    get_nearby_reports_from_database(positionId)
+    return print("in get_nearby_reports positionId: {}".format(positionId))
+
+
 # Set / Update / Insert / Delete
 
 
@@ -142,6 +148,11 @@ def get_user_location_from_database(userid):
     # TODO: DB connection code
     location = {'234','6476'}
     return location
+def get_nearby_reports_from_database(positionId):
+    print("in get_nearby_reports_from_database positionId: {}".format(positionId))
+    # TODO: DB connection code
+    reports_data  = "reports"
+    return reports_data
 
 # Todo: implement database connectivity - select, insert, update, delete
 # Create User (insert)
